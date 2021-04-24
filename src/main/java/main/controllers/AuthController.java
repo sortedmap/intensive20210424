@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.RequestContextHolder;
 
+import javax.servlet.http.HttpServletRequest;
+
 @RestController
 @RequestMapping("/api")
 public class AuthController {
@@ -20,12 +22,13 @@ public class AuthController {
     }
 
     @PostMapping("/auth")
-    public UserResponse authorize(@RequestParam UserRequest request) {
-        User user = userRepository.getByLogin(request.getLogin());
+    public UserResponse authorize(HttpServletRequest request) {
+        String login = request.getParameter("login");
+        User user = userRepository.getByLogin(login);
 
         if (user == null) {
             final String sessionId = RequestContextHolder.currentRequestAttributes().getSessionId();
-            User createdUser = userRepository.save(new User(sessionId, request.getLogin()));
+            User createdUser = userRepository.save(new User(sessionId, login));
             if (createdUser.getId() != null) {
                 return new UserResponse(createdUser.getLogin(), true);
             }
