@@ -21,7 +21,10 @@ public class User {
     @Size(max = 255)
     private String login;
 
-    public User(Integer id, String sessionId, String login) {
+    public User() {
+    }
+
+    public User(String sessionId, String login) {
         this.id = id;
         this.sessionId = sessionId;
         this.login = login;
