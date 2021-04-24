@@ -1,5 +1,5 @@
 .main {
-    display: flex;
+    display: none;
     justify-content: space-between;
     width: 70%;
     height: 50%;
