@@ -1,6 +1,4 @@
-package entity;
-
-import org.springframework.data.annotation.Id;
+package main.entity;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -11,6 +9,7 @@ public class Message {
 
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Id
+    @Column(name = "id")
     private Integer id;
 
     @ManyToOne(cascade = CascadeType.ALL)
