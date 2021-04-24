@@ -1,5 +1,3 @@
 $(function(){
-    $('#press-me').on('click', function(){
-        $('#press-me').remove();
-    });
+    $.get('/api/auth')
 });
