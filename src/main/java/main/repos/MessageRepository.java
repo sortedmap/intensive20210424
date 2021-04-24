@@ -1,6 +1,6 @@
-package repos;
+package main.repos;
 
-import entity.Message;
+import main.entity.Message;
 import org.springframework.data.repository.CrudRepository;
 
 public interface MessageRepository extends CrudRepository<Message, Integer> {
