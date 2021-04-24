@@ -1,3 +1,45 @@
-#press-me {
-    font-size: 24px;
+.main {
+    display: flex;
+    justify-content: space-between;
+    width: 70%;
+    height: 50%;
+    margin: 0 auto;
+    border: black solid 10px;
+}
+
+.messages-window {
+    width: 100%;
+}
+.messages-frame {
+    margin: 20px 0 20px 20px;
+    border: black solid 5px;
+    height: 500px;
+}
+
+.users-list {
+    margin: 20px 30px 30px 30px;
+    border: black solid 5px;
+    width: 52%;
+}
+
+.message-form {
+    height: 6%;
+    border: black solid 2px;
+    margin-left: 20px;
+    margin-bottom: 25px;
+}
+
+.input {
+    border: red solid 2px;
+    margin: 8px;
+    margin-left: 13px;
+    width: 79%;
+}
+
+.button {
+    background: red;
+    width: 13%;
+    height: 21px;
+    border: black solid 2px;
+    color: white;
 }
