@@ -5,25 +5,22 @@ import main.controllers.responses.UserResponse;
 import main.entity.User;
 import main.repos.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.RequestContextHolder;
 
 @RestController
 @RequestMapping("/api")
-public class UserController {
+public class AuthController {
 
     private final UserRepository userRepository;
 
     @Autowired
-    public UserController(UserRepository userRepository) {
+    public AuthController(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
     @PostMapping("/auth")
-    public UserResponse authorize(@RequestBody UserRequest request) {
+    public UserResponse authorize(@RequestParam UserRequest request) {
         User user = userRepository.getByLogin(request.getLogin());
 
         if (user == null) {
@@ -34,6 +31,17 @@ public class UserController {
             }
         }
 
+        return new UserResponse(false);
+    }
+
+    @GetMapping("/auth")
+    public UserResponse authorize() {
+        final String sessionId = RequestContextHolder.currentRequestAttributes().getSessionId();
+        User user = userRepository.getBySessionId(sessionId);
+        if (user != null) {
+            return new UserResponse(user.getLogin(), true);
+
+        }
         return new UserResponse(false);
     }
 
