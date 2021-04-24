@@ -20,7 +20,7 @@ public class AuthController {
     }
 
     @PostMapping("/auth")
-    public UserResponse authorize(@RequestParam UserRequest request) {
+    public UserResponse authorize(@RequestBody UserRequest request) {
         User user = userRepository.getByLogin(request.getLogin());
 
         if (user == null) {
